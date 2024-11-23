@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Education Resource Network</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(109.6deg, rgb(44, 83, 131) 18.9%, rgb(95, 175, 201) 91.1%);
+        }
+        .navbar {
+            background-color: #1c3f60;
+            padding: 5px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .navbar-brand img {
+            height: 80px;
+            width: auto;
+            margin-right: 10px;
+        }
+        .navbar-menu {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar-menu li {
+            margin: 0 15px;
+        }
+        .navbar-menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .navbar-menu li a:hover {
+            color: #95d5e5;
+        }
+        .social-icons {
+            display: flex;
+            list-style-type: none;
+            align-items: center;
+        }
+        .social-icons li {
+            margin-left: 15px;
+        }
+        .social-icons li a {
+            color: #fff;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        .social-icons li a:hover {
+            color: #95d5e5;
+        }
+        .city-header {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 60px 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .city-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .city-header p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        .schools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .school-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .school-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .school-card a {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+        }
+        .school-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .school-card h3 {
+            padding: 15px;
+            margin: 0;
+            font-size: 18px;
+            text-align: center;
+        }
+        @media (max-width: 1024px) {
+            .schools-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .schools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .navbar {
+                flex-wrap: wrap;
+            }
+            .navbar-menu {
+                order: 3;
+                width: 100%;
+                justify-content: flex-start;
+                margin-top: 10px;
+            }
+            .navbar-menu li {
+                margin: 5px 10px 5px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .schools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="/assets/logo.png" alt="Logo">
+            Learning Education Resource Network
+        </a>
+        <ul class="navbar-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <ul class="social-icons">
+            <li><a href="https://www.facebook.com/profile.php?id=61568587173614&mibextid=ZbWKwL" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://x.com/LERNGROUP?t=XgVbYVeVRVOmq_q5Mp2vpg&s=09" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+    </nav>
+
+    <header class="city-header">
+        <h1>Taguig City</h1>
+        <p>Taguig City offers a blend of public and private schools, including prestigious institutions like International School Manila and Enderun Colleges. The city's educational landscape supports both K-12 and higher education, with a focus on academic excellence and global standards.</p>
+    </header>
+
+    <main class="schools-grid">
+        <div class="school-card">
+            <a href="school1.html">
+                <img src="/assets/tcu.png" alt="Taguig City University">
+                <h3>Taguig City university</h3>
+            </a>
+        </div>
+        <div class="school-card">
+            <a href="school2.html">
+                <img src="/assets/end.png" alt="Enderum Colleges">
+                <h3>Enderum Colleges</h3>
+            </a>
+        </div>
+        <div class="school-card">
+            <a href="school3.html">
+                <img src="/assets/ism.png" alt="International School Manila">
+                <h3>International School Manila</h3>
+            </a>
+        </div>
+        <div class="school-card">
+            <a href="school4.html">
+                <img src="/assets/bsm.jpg" alt="British School Manila">
+                <h3>British School Manila</h3>
+            </a>
+        </div>
+        <div class="school-card">
+            <a href="school5.html">
+                <img src="/assets/global.png" alt="Global City Innovative College">
+                <h3>Global City Innovative College</h3>
+            </a>
+        </div>
+        <div class="school-card">
+            <a href="school6.html">
+                <img src="/assets/eas.jpg" alt="Everest Academy manila">
+                <h3>Everest Academy manila</h3>
+            </a>
+        </div>
+        <div class="school-card">
+            <a href="school7.html">
+                <img src="/assets/up.png" alt="University of the Philippines">
+                <h3>University of the Philippines</h3>
+            </a>
+        </div>
+        <div class="school-card">
+            <a href="school8.html">
+                <img src="/assets/tsh.jpg" alt="Taguig Science High School">
+                <h3>Taguig Science High School</h3>
+            </a>
+        </div>
+    </main>
+</body>
+</html>

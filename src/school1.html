@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evergreen Academy - School Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(109.6deg, rgb(44, 83, 131) 18.9%, rgb(95, 175, 201) 91.1%);
+        }
+        .navbar {
+            background-color: #1c3f60;
+            padding: 5px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .navbar-brand img {
+            height: 80px;
+            width: auto;
+            margin-right: 10px;
+        }
+        .navbar-menu {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar-menu li {
+            margin: 0 15px;
+        }
+        .navbar-menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .navbar-menu li a:hover {
+            color: #95d5e5;
+        }
+        .social-icons {
+            display: flex;
+            list-style-type: none;
+            align-items: center;
+        }
+        .social-icons li {
+            margin-left: 15px;
+        }
+        .social-icons li a {
+            color: #fff;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        .social-icons li a:hover {
+            color: #95d5e5;
+        }
+        .school-header {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .school-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .school-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .school-image {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .school-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .school-image img.active {
+            opacity: 1;
+        }
+        .image-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .image-nav button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .image-nav button.active {
+            background-color: #fff;
+        }
+        .school-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .school-info h2 {
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .tab-container {
+            margin-top: 20px;
+        }
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .tab-button:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        .tab-button:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        .tab-button.active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #95d5e5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .school-content {
+                grid-template-columns: 1fr;
+            }
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .navbar-menu, .social-icons {
+                margin-top: 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            .school-header h1 {
+                font-size: 2em;
+            }
+            .tab-buttons {
+                flex-direction: column;
+            }
+            .tab-button {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="/assets/logo.png" alt="Logo">
+            Learning Education Resource Network
+        </a>
+        <ul class="navbar-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <ul class="social-icons">
+            <li><a href="https://www.facebook.com/profile.php?id=61568587173614&mibextid=ZbWKwL" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://x.com/LERNGROUP?t=XgVbYVeVRVOmq_q5Mp2vpg&s=09" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+    </nav>
+
+    <header class="school-header">
+        <h1>Evergreen Academy</h1>
+        <p>Nurturing minds, shaping futures</p>
+    </header>
+
+    <main class="school-content">
+        <div class="school-image">
+            <img src="/placeholder.svg?height=400&width=600&text=Campus+Image+1" alt="Evergreen Academy Campus 1" class="active">
+            <img src="/placeholder.svg?height=400&width=600&text=Campus+Image+2" alt="Evergreen Academy Campus 2">
+            <img src="/placeholder.svg?height=400&width=600&text=Campus+Image+3" alt="Evergreen Academy Campus 3">
+            <img src="/placeholder.svg?height=400&width=600&text=Campus+Image+4" alt="Evergreen Academy Campus 4">
+            <div class="image-nav"></div>
+        </div>
+        <div class="school-info">
+            <h2>About Evergreen Academy</h2>
+            <p>Evergreen Academy is a prestigious institution known for its innovative approach to education and commitment to academic excellence. Our state-of-the-art facilities and dedicated faculty provide students with an enriching learning environment.</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="openTab(event, 'rules')">School Rules</button>
+                    <button class="tab-button" onclick="openTab(event, 'courses')">Offered Courses</button>
+                </div>
+                
+                <div id="rules" class="tab-content active">
+                    <ul>
+                        <li>Respect for all members of the school community</li>
+                        <li>Adherence to the dress code</li>
+                        <li>Punctuality and regular attendance</li>
+                        <li>No use of mobile phones during class hours</li>
+                        <li>Active participation in extracurricular activities</li>
+                    </ul>
+                </div>
+                
+                <div id="courses" class="tab-content">
+                    <ul>
+                        <li>Advanced Placement (AP) courses</li>
+                        <li>STEM-focused curriculum</li>
+                        <li>Foreign languages (Spanish, French, Mandarin)</li>
+                        <li>Visual and performing arts</li>
+                        <li>Physical education and sports</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <a href="index.html" class="back-link">Back to Gallery</a>
+        </div>
+    </main>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabContent, tabButtons;
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+            }
+            tabButtons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].className = tabButtons[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Image slider functionality
+        const images = document.querySelectorAll('.school-image img');
+        const imageNav = document.querySelector('.image-nav');
+        let currentImage = 0;
+
+        // Create navigation buttons
+        images.forEach((_, index) => {
+            const button = document.createElement('button');
+            button.addEventListener('click', () => showImage(index));
+            imageNav.appendChild(button);
+        });
+
+        const navButtons = imageNav.querySelectorAll('button');
+
+        function showImage(index) {
+            images[currentImage].classList.remove('active');
+            navButtons[currentImage].classList.remove('active');
+            currentImage = index;
+            images[currentImage].classList.add('active');
+            navButtons[currentImage].classList.add('active');
+        }
+
+        function nextImage() {
+            showImage((currentImage + 1) % images.length);
+        }
+
+        // Initialize
+        showImage(0);
+        setInterval(nextImage, 5000); // Change image every 5 seconds
+    </script>
+</body>
+</html>
